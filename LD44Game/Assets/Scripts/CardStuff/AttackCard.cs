@@ -7,8 +7,14 @@ public class AttackCard : Card
 {
     public float attack;
 
+    private void Awake()
+    {
+        
+    }
+
     public override void Activate()
     {
+        Debug.Log("The enemy takes " + attack.ToString() + " damage");
 
     }
 }

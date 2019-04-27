@@ -60,10 +60,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CardTypes\AttackCard.cs" />
-    <Compile Include="Assets\Scripts\CardTypes\Card.cs" />
-    <Compile Include="Assets\Scripts\CardTypes\SpecialCard.cs" />
-    <Compile Include="Assets\Scripts\CardTypes\StatBoostCard.cs" />
+    <Compile Include="Assets\Scripts\AIController.cs" />
+    <Compile Include="Assets\Scripts\CardStuff\AttackCard.cs" />
+    <Compile Include="Assets\Scripts\CardStuff\Card.cs" />
+    <Compile Include="Assets\Scripts\CardStuff\Deck.cs" />
+    <Compile Include="Assets\Scripts\CardStuff\SpecialCard.cs" />
+    <Compile Include="Assets\Scripts\CardStuff\StatBoostCard.cs" />
+    <Compile Include="Assets\Scripts\LerpBackground.cs" />
+    <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\TurnController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

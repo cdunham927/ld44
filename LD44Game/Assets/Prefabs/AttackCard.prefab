@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5659049861852504068
+--- !u!1 &3692029520268464468
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,30 +8,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9132949086143028857}
-  - component: {fileID: 2780935794026757000}
-  - component: {fileID: 7643223959181381599}
-  - component: {fileID: 6165727770332762898}
-  - component: {fileID: 407125483}
+  - component: {fileID: 7294736172224785411}
+  - component: {fileID: 1515078435689251082}
+  - component: {fileID: 6627612018592086988}
+  - component: {fileID: 969045165918271812}
+  - component: {fileID: 4521587471176527833}
   m_Layer: 5
-  m_Name: Card
+  m_Name: AttackCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &9132949086143028857
+--- !u!224 &7294736172224785411
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5659049861852504068}
+  m_GameObject: {fileID: 3692029520268464468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 431382380395817683}
+  - {fileID: 6720602881806100320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40,21 +40,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2780935794026757000
+--- !u!222 &1515078435689251082
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5659049861852504068}
+  m_GameObject: {fileID: 3692029520268464468}
   m_CullTransparentMesh: 0
---- !u!114 &7643223959181381599
+--- !u!114 &6627612018592086988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5659049861852504068}
+  m_GameObject: {fileID: 3692029520268464468}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -77,13 +77,13 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &6165727770332762898
+--- !u!114 &969045165918271812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5659049861852504068}
+  m_GameObject: {fileID: 3692029520268464468}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -113,11 +113,11 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7643223959181381599}
+  m_TargetGraphic: {fileID: 6627612018592086988}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 407125483}
+      - m_Target: {fileID: 4521587471176527833}
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -130,13 +130,13 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &407125483
+--- !u!114 &4521587471176527833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5659049861852504068}
+  m_GameObject: {fileID: 3692029520268464468}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da45d8db2550c354985fb1725658c995, type: 3}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   attack: 5
---- !u!1 &8975161420122780862
+--- !u!1 &6364936025399418304
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,9 +152,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 431382380395817683}
-  - component: {fileID: 4951494584758973115}
-  - component: {fileID: 6257237968856340668}
+  - component: {fileID: 6720602881806100320}
+  - component: {fileID: 5256415810399937623}
+  - component: {fileID: 908948007422222961}
   m_Layer: 5
   m_Name: CardText
   m_TagString: Untagged
@@ -162,18 +162,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &431382380395817683
+--- !u!224 &6720602881806100320
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8975161420122780862}
+  m_GameObject: {fileID: 6364936025399418304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9132949086143028857}
+  m_Father: {fileID: 7294736172224785411}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -181,21 +181,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4951494584758973115
+--- !u!222 &5256415810399937623
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8975161420122780862}
+  m_GameObject: {fileID: 6364936025399418304}
   m_CullTransparentMesh: 0
---- !u!114 &6257237968856340668
+--- !u!114 &908948007422222961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8975161420122780862}
+  m_GameObject: {fileID: 6364936025399418304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
