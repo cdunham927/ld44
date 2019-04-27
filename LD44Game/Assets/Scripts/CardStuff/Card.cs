@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class Card : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public abstract class Card : MonoBehaviour
 {
     public float cost;
     //public float rarity;
@@ -13,20 +13,5 @@ public abstract class Card : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
     void Awake()
     {
         anim = GetComponent<Animator>();
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Activate();
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-
     }
 }

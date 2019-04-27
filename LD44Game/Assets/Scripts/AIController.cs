@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
+    public float hp;
+
+    public void TakeDamage(float amt)
+    {
+        hp -= amt;
+    }
+
 
 }
