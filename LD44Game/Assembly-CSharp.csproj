@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\LerpBackground.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlayerHandPanelController.cs" />
     <Compile Include="Assets\Scripts\TurnController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Owner/Documents/LD44/ld44/LD44Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
