@@ -11,6 +11,8 @@ public class TurnController : MonoBehaviour
     AIController enemy;
     public GameObject gameOverCanvas;
     public Text gameOverText;
+    public Text battleLog;
+    public float lerpSpd;
 
     private void Awake()
     {
@@ -37,7 +39,10 @@ public class TurnController : MonoBehaviour
     {
         if (player_turn == false)
         {
+            enemy.getNum = true;
             enemy.canIncreaseHand = true;
+            enemy.canSteal = false;
+            enemy.canDouble = true;
             enemy.Invoke("EnemyTurn", 1f);
         }
 
@@ -52,5 +57,12 @@ public class TurnController : MonoBehaviour
             GameOver();
             gameOverText.text = "You Win!";            
         }
+
+        battleLog.color = Color.Lerp(battleLog.color, new Color(1, 1, 1, 0), Time.deltaTime * lerpSpd);
+    }
+
+    public void UpdateLog(string text)
+    {
+        battleLog.text = text;
     }
 }

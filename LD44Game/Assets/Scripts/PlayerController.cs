@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public Deck playerDeck;
     public int maxHand = 3;
     public bool doubleDamage = false;
+    public int attackIncrease = 0;
+    public int defenseIncrease = 0;
 
     private void Awake()
     {
@@ -35,7 +37,8 @@ public class PlayerController : MonoBehaviour
             hand.Add(playerDeck.DrawCard(true));
             hp -= 5;
         }
-
+        
+        hand.RemoveAll(card => card == null);
     }
 
     public void Bigger ()
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
     public void PowerUp ()
     {
         doubleDamage = true;
+        hp -= 15;
     }
 
     public void Steal ()
@@ -77,7 +81,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Application.isEditor && Input.GetKeyDown(KeyCode.O))
         {
-            if (hand.Count < maxHand) hand.Add(playerDeck.DrawCard(true));
+            if (hand.Count < maxHand)
+            {
+                hand.Add(playerDeck.DrawCard(true));
+
+                hand.RemoveAll(card => card == null);
+            }
         }
 
         //Health

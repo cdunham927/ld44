@@ -25,17 +25,29 @@ public class SpecialCard : Card
     {
         if (playerCard && turn.player_turn)
         {
+            turn.battleLog.color = Color.white;
+            turn.UpdateLog("You heal " + healAmt.ToString() + " health!");
+
             player.TakeDamage(-healAmt);
             turn.player_turn = false;
             player.hand.Remove(this);
             Destroy(gameObject);
+
+            player.attackIncrease--;
+            player.defenseIncrease--;
         }
-        else if (!turn.player_turn)
+        else if (!turn.player_turn && !playerCard)
         {
+            turn.battleLog.color = Color.white;
+            turn.UpdateLog("The enemy heals " + healAmt.ToString() + " health!");
+
             enemy.TakeDamage(-healAmt);
             turn.player_turn = true;
             enemy.hand.Remove(this);
             Destroy(gameObject);
+
+            enemy.attackIncrease--;
+            enemy.defenseIncrease--;
         }
     }
 }

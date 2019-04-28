@@ -13,12 +13,24 @@ public class AIController : MonoBehaviour
     public Deck enemyDeck;
     public int maxHand = 3;
     public float chanceToIncreaseHand = 35;
-    float val = Random.Range(0, 100);
+    float val;
     public bool canIncreaseHand = true;
+    public float chanceToDoubleDamage = 12.5f;
+    public float chanceToSteal = 20;
+    public bool canDouble = true;
+    public bool doubleDamage = false;
+    public bool canSteal = true;
+    PlayerController player;
+    public bool getNum = true;
+    public int attackIncrease = 0;
+    public int defenseIncrease = 0;
+    //AI Difficulty
+    public bool normal = true;
 
     private void Awake()
     {
         hp = maxHp;
+        player = FindObjectOfType<PlayerController>();
 
         for (int i = 0; i < 3; i++)
         {
@@ -94,6 +106,25 @@ public class AIController : MonoBehaviour
         }
     }
 
+    void DoubleDamage()
+    {
+        Debug.Log("Double damg");
+        doubleDamage = true;
+        hp -= 15;
+    }
+
+    void Steal()
+    {
+        Debug.Log("Stealing");
+        int x = Random.Range(0, player.hand.Count);
+        player.hand[x].gameObject.transform.SetParent(enemyDeck.transform);
+        player.hand[x].playerCard = !player.hand[x].playerCard;
+        hand.Add(player.hand[x]);
+        player.hand.Remove(player.hand[x]);
+        hp -= 10;
+        canSteal = false;
+    }
+
     public void EnemyTurn()
     {
         //Big elaborate ass shit to determine what the enemy does on their turn
@@ -103,19 +134,35 @@ public class AIController : MonoBehaviour
         //If you can't win against it then you just suck
         //Don't hate the player, hate the programmer
 
-        val = Random.Range(0, 100);
-        if (maxHand < 7 && val < chanceToIncreaseHand)
+        if (getNum)
         {
-            IncreaseHandSize();
-            canIncreaseHand = false;
+            val = Random.Range(0, 100);
+            Debug.Log(val);
+            //Double damage on next attack
+            if (val <= chanceToDoubleDamage && doubleDamage == false)
+            {
+                DoubleDamage();
+            }
+            //Steal a card from the player
+            else if (hand.Count < maxHand && val <= chanceToSteal && player.hand.Count > 0 && canSteal)
+            {
+                Steal();
+            }
+            else if (maxHand < 7 && val <= chanceToIncreaseHand)
+            {
+                IncreaseHandSize();
+                canIncreaseHand = false;
+            }
+            getNum = false;
         }
 
         if (hand.Count <= 0)
         {
-            int t = Random.Range(0, 3);
+            int t = Random.Range(0, 5);
             if (t == 0) Draw();
-            else if (t == 1 && hand.Count < 2) DrawThree();
-            else if (t == 2 && hand.Count < 3 && maxHand > 5) DrawFive();
+            else if (t == 1 && hand.Count < 2 && hp > 25) DrawThree();
+            else if (t == 2 && hand.Count < 3 && maxHand > 5 && hp > 40) DrawFive();
+            else Draw();
         }
 
         int x = Random.Range(0, hand.Count);
