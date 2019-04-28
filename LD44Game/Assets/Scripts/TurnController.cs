@@ -37,13 +37,14 @@ public class TurnController : MonoBehaviour
 
     void Update ()
     {
-        if (player_turn == false)
+        if (player_turn == false && !enemy.startedTurn && enemy.hp > 0 && player.hp > 0)
         {
+            enemy.startedTurn = true;
             enemy.getNum = true;
             enemy.canIncreaseHand = true;
-            enemy.canSteal = false;
+            enemy.canSteal = true;
             enemy.canDouble = true;
-            enemy.Invoke("EnemyTurn", 1f);
+            enemy.Invoke("EnemyStartTurn", 1f);
         }
 
         if (player.hp <= 0)

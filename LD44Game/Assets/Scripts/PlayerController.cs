@@ -41,6 +41,40 @@ public class PlayerController : MonoBehaviour
         hand.RemoveAll(card => card == null);
     }
 
+    public void DrawThree()
+    {
+
+        if (hand.Count < maxHand)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                hand.Add(playerDeck.DrawCard(false));
+                hp -= 4;
+
+                if (hand.Count >= maxHand) break;
+            }
+        }
+
+        hand.RemoveAll(card => card == null);
+    }
+
+    public void DrawFive()
+    {
+
+        if (hand.Count < maxHand)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                hand.Add(playerDeck.DrawCard(false));
+                hp -= 3;
+
+                if (hand.Count >= maxHand) break;
+            }
+        }
+
+        hand.RemoveAll(card => card == null);
+    }
+
     public void Bigger ()
     {
         maxHand += 1;
@@ -59,7 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             int x = Random.Range(0, enemy.hand.Count);
             enemy.hand[x].gameObject.transform.SetParent(playerDeck.transform);
-            enemy.hand[x].playerCard = !enemy.hand[x].playerCard;
+            enemy.hand[x].playerCard = true;
             hand.Add(enemy.hand[x]);
             enemy.hand.Remove(enemy.hand[x]);
             hp -= 10;

@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -148,6 +148,7 @@ MonoBehaviour:
   text: {fileID: 347193672003442584}
   playerCard: 0
   image: {fileID: 7146720900128112027}
+  show: 0
   turn: {fileID: 0}
   player: {fileID: 0}
   enemy: {fileID: 0}

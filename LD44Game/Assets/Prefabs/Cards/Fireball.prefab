@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -143,12 +143,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da45d8db2550c354985fb1725658c995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
   title: Fireball
   description: Deal 5 damage
   text: {fileID: 3630227390634988420}
   playerCard: 0
   image: {fileID: 3630227388714112921}
+  show: 0
+  turn: {fileID: 0}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
   attack: 5
 --- !u!95 &3630227388714112923
 Animator:
