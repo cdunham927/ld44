@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     public void Bigger ()
     {
         maxHand += 1;
-        hp -= 15;
+        hp -= 10;
     }
 
     public void PowerUp ()
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         if (hand.Count < maxHand)
         {
-            if (enemy.hand.Count == 0;)
+            if (enemy.hand.Count > 0)
             {
             int x = Random.Range(0, enemy.hand.Count);
             enemy.hand[x].gameObject.transform.SetParent(playerDeck.transform);
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SeeHand ()
+    public void Spy ()
     {
         int x = Random.Range(0, hand.Count);
         enemy.hand[x].show = true;
