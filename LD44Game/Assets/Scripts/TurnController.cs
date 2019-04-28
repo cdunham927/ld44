@@ -37,6 +37,7 @@ public class TurnController : MonoBehaviour
     {
         if (player_turn == false)
         {
+            enemy.canIncreaseHand = true;
             enemy.Invoke("EnemyTurn", 1f);
         }
 
