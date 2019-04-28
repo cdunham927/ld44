@@ -24,11 +24,53 @@ public class StatBoostCard : Card
 
     public void DefenseBoost()
     {
+        if (playerCard && turn.player_turn)
+        {
+            player.defenseIncrease = effectDuration;
 
+            turn.battleLog.color = Color.white;
+            turn.UpdateLog("Your defense increases!");
+
+            turn.player_turn = false;
+            player.hand.Remove(this);
+            Destroy(gameObject);
+        }
+        else if (!turn.player_turn && !playerCard)
+        {
+            enemy.defenseIncrease = effectDuration;
+
+            turn.battleLog.color = Color.white;
+            turn.UpdateLog("The enemies defense increases!");
+
+            turn.player_turn = true;
+            enemy.hand.Remove(this);
+            Destroy(gameObject);
+        }
     }
 
     public void AttackBoost()
     {
+        if (playerCard && turn.player_turn)
+        {
+            player.attackIncrease = effectDuration;
 
+            turn.battleLog.color = Color.white;
+            turn.UpdateLog("Your attack increases!");
+
+            turn.player_turn = false;
+            player.hand.Remove(this);
+            Destroy(gameObject);
+        }
+        else if (!turn.player_turn && !playerCard)
+        {
+            enemy.attackIncrease = effectDuration;
+
+            turn.battleLog.color = Color.white;
+            turn.UpdateLog("The enemies attack increases!");
+
+            turn.player_turn = true;
+            enemy.hand.Remove(this);
+            Destroy(gameObject);
+        }
     }
 }

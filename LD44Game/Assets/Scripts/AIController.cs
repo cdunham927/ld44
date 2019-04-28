@@ -13,12 +13,27 @@ public class AIController : MonoBehaviour
     public Deck enemyDeck;
     public int maxHand = 3;
     public float chanceToIncreaseHand = 35;
-    float val = Random.Range(0, 100);
+    float val;
     public bool canIncreaseHand = true;
+    public float chanceToDoubleDamage = 12.5f;
+    public float chanceToSteal = 20;
+    public bool canDouble = true;
+    public bool doubleDamage = false;
+    public bool canSteal = true;
+    TurnController turn;
+    PlayerController player;
+    public bool getNum = true;
+    public int attackIncrease = 0;
+    public int defenseIncrease = 0;
+    public bool startedTurn = false;
+    //AI Difficulty
+    public bool normal = true;
 
     private void Awake()
     {
         hp = maxHp;
+        turn = FindObjectOfType<TurnController>();
+        player = FindObjectOfType<PlayerController>();
 
         for (int i = 0; i < 3; i++)
         {
@@ -42,7 +57,7 @@ public class AIController : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 hand.Add(enemyDeck.DrawCard(false));
-                hp -= 5;
+                hp -= 4;
 
                 if (hand.Count >= maxHand) break;
             }
@@ -56,7 +71,7 @@ public class AIController : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 hand.Add(enemyDeck.DrawCard(false));
-                hp -= 5;
+                hp -= 3;
 
                 if (hand.Count >= maxHand) break;
             }
@@ -91,10 +106,36 @@ public class AIController : MonoBehaviour
             hp -= 10;
             val = 9000;
             canIncreaseHand = false;
+            turn.UpdateLog("Enemy increased their hand size!");
         }
     }
 
-    public void EnemyTurn()
+    void DoubleDamage()
+    {
+        Debug.Log("Double damg");
+        doubleDamage = true;
+        hp -= 15;
+        turn.UpdateLog("Enemy does double damage on their next attack!");
+    }
+
+    void Steal()
+    {
+        if (canSteal)
+        {
+            Debug.Log("Stealing");
+            int x = Random.Range(0, player.hand.Count);
+            player.hand[x].gameObject.transform.SetParent(enemyDeck.transform);
+            player.hand[x].playerCard = false;
+            player.hand[x].show = false;
+            hand.Add(player.hand[x]);
+            player.hand.Remove(player.hand[x]);
+            hp -= 10;
+            canSteal = false;
+            turn.UpdateLog("Enemy has stolen a " + player.hand[x].title + " card!");
+        }
+    }
+
+    public void EnemyStartTurn()
     {
         //Big elaborate ass shit to determine what the enemy does on their turn
         //Like come on, it basically does random shit
@@ -103,19 +144,41 @@ public class AIController : MonoBehaviour
         //If you can't win against it then you just suck
         //Don't hate the player, hate the programmer
 
-        val = Random.Range(0, 100);
-        if (maxHand < 7 && val < chanceToIncreaseHand)
+        if (getNum && startedTurn)
         {
-            IncreaseHandSize();
-            canIncreaseHand = false;
+            val = Random.Range(0, 100);
+            //Double damage on next attack
+            if (val <= chanceToDoubleDamage && doubleDamage == false)
+            {
+                DoubleDamage();
+            }
+            //Steal a card from the player
+            else if (hand.Count < maxHand && val <= chanceToSteal && player.hand.Count > 0)
+            {
+                Steal();
+            }
+            else if (maxHand < 7 && val <= chanceToIncreaseHand)
+            {
+                IncreaseHandSize();
+                canIncreaseHand = false;
+            }
+            getNum = false;
+
+            startedTurn = false;
+            Invoke("EnemyEndTurn", 1f);
         }
+    }
+
+    public void EnemyEndTurn()
+    {
 
         if (hand.Count <= 0)
         {
-            int t = Random.Range(0, 3);
+            int t = Random.Range(0, 4);
             if (t == 0) Draw();
-            else if (t == 1 && hand.Count < 2) DrawThree();
-            else if (t == 2 && hand.Count < 3 && maxHand > 5) DrawFive();
+            else if (t == 1 && hand.Count < 2 && hp > 25) DrawThree();
+            else if (t == 2 && hand.Count < 3 && maxHand > 5 && hp > 40) DrawFive();
+            else if (t == 3 && hand.Count < 3 && hp > 25) DrawThree();
         }
 
         int x = Random.Range(0, hand.Count);

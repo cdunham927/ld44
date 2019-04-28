@@ -17,7 +17,7 @@ public class PlayerHandPanelController : MonoBehaviour
     private void Update()
     {
         int numCards = player.hand.Count;
-        if (numCards == 0) rect.sizeDelta = new Vector2(120, 150);
-        else rect.sizeDelta = new Vector2(numCards * 110 + 10, 150);
+        if (numCards == 0) rect.sizeDelta = new Vector2(120, 140);
+        else rect.sizeDelta = new Vector2(numCards * 110 + 10, 140);
     }
 }
