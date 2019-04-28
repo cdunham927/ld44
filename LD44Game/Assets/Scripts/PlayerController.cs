@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Application.isEditor && Input.GetKeyDown(KeyCode.O))
         {
-            if (hand.Count < maxHand) hand.Add(playerDeck.DrawCard(true));
+            if (hand.Count < maxHand) Draw();
         }
 
         //Health
