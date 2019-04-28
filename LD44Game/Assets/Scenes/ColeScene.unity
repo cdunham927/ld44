@@ -810,8 +810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0145cc720ecea2543b63cd0cdd37fd04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 125
-  maxHp: 125
+  hp: 115
+  maxHp: 115
   turnController: {fileID: 406134515}
   health_bar: {fileID: 319932768}
   health: {fileID: 1350513985}
@@ -1304,8 +1304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1324c728fe0184cbec89c5c54cbfcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 125
-  maxHp: 125
+  hp: 115
+  maxHp: 115
   hand: []
   health_bar: {fileID: 934045471}
   health: {fileID: 1729828772}
@@ -1443,11 +1443,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCardPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 5327019543992667647, guid: 6912026df1e7bff42a67a29139477447,
-        type: 3}
-      propertyPath: m_Name
-      value: DeckPanel
-      objectReference: {fileID: 0}
     - target: {fileID: 5649234087874432378, guid: 6912026df1e7bff42a67a29139477447,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1552,6 +1547,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327019543992667647, guid: 6912026df1e7bff42a67a29139477447,
+        type: 3}
+      propertyPath: m_Name
+      value: DeckPanel
       objectReference: {fileID: 0}
     - target: {fileID: 2214633948487401210, guid: 6912026df1e7bff42a67a29139477447,
         type: 3}

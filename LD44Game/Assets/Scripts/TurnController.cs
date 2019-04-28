@@ -32,7 +32,7 @@ public class TurnController : MonoBehaviour
     {
         if (player_turn == false)
         {
-            enemy.EnemyTurn();
+            enemy.Invoke("EnemyTurn", 0.5f);
         }
 
         if (player.hp <= 0)
