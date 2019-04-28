@@ -12,6 +12,7 @@ public abstract class Card : MonoBehaviour
     public Text text;
     public bool playerCard;
     public Image image;
+    public bool show = false;
 
     public TurnController turn;
     public PlayerController player;
@@ -23,6 +24,8 @@ public abstract class Card : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         enemy = FindObjectOfType<AIController>();
         anim = GetComponent<Animator>();
+
+        show = false;
     }
 
     private void Update()
@@ -36,9 +39,8 @@ public abstract class Card : MonoBehaviour
         else
         {
             image.color = Color.gray;
-            text.text = "";
-            //text.text = title + " \n\n" + description;
-            //text.enabled = false;
+            if (!show) text.text = "";
+            else text.text = title + " \n\n" + description;
         }
     }
 }

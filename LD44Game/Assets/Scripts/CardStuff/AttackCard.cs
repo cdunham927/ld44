@@ -11,11 +11,12 @@ public class AttackCard : Card
     {
         if (playerCard && turn.player_turn)
         {
-            /*if (player.doubleDamage)
+            if (player.doubleDamage)
             {
                 enemy.TakeDamage(attack * 2);
+                player.doubleDamage = false;
             }
-            else enemy.TakeDamage(attack);*/
+            else enemy.TakeDamage(attack);
 
             turn.player_turn = false;
             player.hand.Remove(this);

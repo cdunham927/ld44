@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public void Bigger ()
     {
-        maxHand += 1
-        hp -= 15
+        maxHand += 1;
+        hp -= 15;
     }
 
     public void PowerUp ()

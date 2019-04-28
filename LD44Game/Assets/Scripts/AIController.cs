@@ -12,6 +12,9 @@ public class AIController : MonoBehaviour
     public Text health;
     public Deck enemyDeck;
     public int maxHand = 3;
+    public float chanceToIncreaseHand = 35;
+    float val = Random.Range(0, 100);
+    public bool canIncreaseHand = true;
 
     private void Awake()
     {
@@ -23,10 +26,41 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private void Draw()
+    public void Draw()
     {
-        hand.Add(enemyDeck.DrawCard(false));
-        hp -= 5;
+        if (hand.Count < maxHand)
+        {
+            hand.Add(enemyDeck.DrawCard(false));
+            hp -= 5;
+        }
+    }
+
+    public void DrawThree()
+    {
+        if (hand.Count < maxHand)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                hand.Add(enemyDeck.DrawCard(false));
+                hp -= 5;
+
+                if (hand.Count >= maxHand) break;
+            }
+        }
+    }
+
+    public void DrawFive()
+    {
+        if (hand.Count < maxHand)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                hand.Add(enemyDeck.DrawCard(false));
+                hp -= 5;
+
+                if (hand.Count >= maxHand) break;
+            }
+        }
     }
 
     public void TakeDamage(float amt)
@@ -44,14 +78,46 @@ public class AIController : MonoBehaviour
         if (Application.isEditor && Input.GetKeyDown(KeyCode.P))
         {
             int x = Random.Range(0, hand.Count);
-            hand[x].image.color = Color.white;
+            hand[x].show = true;
+        }
+    }
+
+    void IncreaseHandSize()
+    {
+        if (canIncreaseHand)
+        {
+            maxHand += 1;
+            hand.Add(enemyDeck.DrawCard(false));
+            hp -= 10;
+            val = 9000;
+            canIncreaseHand = false;
         }
     }
 
     public void EnemyTurn()
     {
         //Big elaborate ass shit to determine what the enemy does on their turn
-        if (hand.Count <= 0) Draw();
+        //Like come on, it basically does random shit
+        //Its not a smart AI
+        //It cant be since I'm the one programming it
+        //If you can't win against it then you just suck
+        //Don't hate the player, hate the programmer
+
+        val = Random.Range(0, 100);
+        if (maxHand < 7 && val < chanceToIncreaseHand)
+        {
+            IncreaseHandSize();
+            canIncreaseHand = false;
+        }
+
+        if (hand.Count <= 0)
+        {
+            int t = Random.Range(0, 3);
+            if (t == 0) Draw();
+            else if (t == 1 && hand.Count < 2) DrawThree();
+            else if (t == 2 && hand.Count < 3 && maxHand > 5) DrawFive();
+        }
+
         int x = Random.Range(0, hand.Count);
         hand[x].Activate();
     }
