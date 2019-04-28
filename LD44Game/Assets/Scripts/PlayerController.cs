@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float hp;
     public float maxHp;
     public TurnController turnController;
+    public AIController enemy;
     public Image health_bar;
     public Text health;
 
@@ -28,15 +29,19 @@ public class PlayerController : MonoBehaviour
 
     //Button On Clicks
     public void Draw()
-    {
-        hand.Add(playerDeck.DrawCard(true));
-        hp -= 5;
+    {   
+        if (hand.Count < maxHand)
+        {
+            hand.Add(playerDeck.DrawCard(true));
+            hp -= 5;
+        }
+
     }
 
     public void Bigger ()
     {
-        maxHand += 1
-        hp -= 15
+        maxHand += 1;
+        hp -= 15;
     }
 
     public void PowerUp ()
@@ -46,12 +51,21 @@ public class PlayerController : MonoBehaviour
 
     public void Steal ()
     {
-        //
+        if (hand.Count < maxHand)
+        {
+            int x = Random.Range(0, enemy.hand.Count);
+            enemy.hand[x].gameObject.transform.SetParent(playerDeck.transform);
+            enemy.hand[x].playerCard = !enemy.hand[x].playerCard;
+            hand.Add(enemy.hand[x]);
+            enemy.hand.Remove(enemy.hand[x]);
+            hp -= 10;
+        }
     }
 
     public void SeeHand ()
     {
-        //
+        int x = Random.Range(0, hand.Count);
+        hand[x].show = true;
     }
     
     public void TakeDamage(float amt)
