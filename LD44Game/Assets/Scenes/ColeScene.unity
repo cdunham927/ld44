@@ -1781,6 +1781,8 @@ MonoBehaviour:
   getNum: 0
   attackIncrease: 0
   defenseIncrease: 0
+  hasStolen: 0
+  startedTurn: 0
   normal: 1
 --- !u!4 &1883358193
 Transform:
