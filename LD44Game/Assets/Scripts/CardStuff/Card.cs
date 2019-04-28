@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public abstract class Card : MonoBehaviour
 {
-    public float cost;
-    //public float rarity;
     public virtual void Activate() { }
     Animator anim;
     public string title;
@@ -15,8 +13,15 @@ public abstract class Card : MonoBehaviour
     public bool playerCard;
     public Image image;
 
-    void Awake()
+    public TurnController turn;
+    public PlayerController player;
+    public AIController enemy;
+
+    private void Awake()
     {
+        turn = FindObjectOfType<TurnController>();
+        player = FindObjectOfType<PlayerController>();
+        enemy = FindObjectOfType<AIController>();
         anim = GetComponent<Animator>();
     }
 
@@ -32,6 +37,8 @@ public abstract class Card : MonoBehaviour
         {
             image.color = Color.gray;
             text.text = "";
+            //text.text = title + " \n\n" + description;
+            //text.enabled = false;
         }
     }
 }
