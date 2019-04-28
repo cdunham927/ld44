@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public TurnController turnController;
     public Image health_bar;
     public Text health;
-<<<<<<< HEAD
     public List<Card> hand = new List<Card>();
     public Deck playerDeck;
     public int maxHand = 3;
@@ -31,19 +31,11 @@ public class PlayerController : MonoBehaviour
         hp -= 5;
     }
 
-    public void GameOver()
-    {
-
-    }
-
     public void TakeDamage(float amt)
     {
         hp -= amt;
     }
 
-=======
-
->>>>>>> 7506bad4400d4924dd81e4d29025cffe480722e2
     void Update ()
     {
         if (Application.isEditor && Input.GetKeyDown(KeyCode.O))
@@ -55,9 +47,5 @@ public class PlayerController : MonoBehaviour
         hp = Mathf.Clamp(hp, 0, maxHp);
         health_bar.fillAmount = hp / maxHp;
         health.text = "Player HP: " + hp;
-<<<<<<< HEAD
     }
-=======
-    }       
->>>>>>> 7506bad4400d4924dd81e4d29025cffe480722e2
 }

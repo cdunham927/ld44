@@ -8,21 +8,13 @@ public class TurnController : MonoBehaviour
 {
     public bool player_turn = true;
     public PlayerController player;
-<<<<<<< HEAD
     AIController enemy;
+    public GameObject gameOverCanvas;
+    public Text gameOverText;
 
     private void Awake()
     {
         enemy = FindObjectOfType<AIController>();
-    }
-
-=======
-    public AIController AI;
-    public Text gameOverText;
-    public GameObject gameOverCanvas;
-    
-    void Awake ()
-    {
         gameOverCanvas.SetActive(false);
     }
 
@@ -35,7 +27,6 @@ public class TurnController : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
->>>>>>> 7506bad4400d4924dd81e4d29025cffe480722e2
 
     void Update ()
     {
@@ -50,7 +41,7 @@ public class TurnController : MonoBehaviour
             gameOverText.text = "Enemy Wins!";
         }
 
-        if (AI.hp <= 0)
+        if (enemy.hp <= 0)
         {
             GameOver();
             gameOverText.text = "You Win!";            
