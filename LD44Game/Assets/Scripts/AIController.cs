@@ -40,6 +40,12 @@ public class AIController : MonoBehaviour
         hp = Mathf.Clamp(hp, 0, maxHp);
         health_bar.fillAmount = hp / maxHp;
         health.text = "Enemy HP: " + hp;
+
+        if (Application.isEditor && Input.GetKeyDown(KeyCode.P))
+        {
+            int x = Random.Range(0, hand.Count);
+            hand[x].image.color = Color.white;
+        }
     }
 
     public void EnemyTurn()

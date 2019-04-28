@@ -8,7 +8,6 @@ public class SpecialCard : Card
     public enum specialTypes { heal };
     public specialTypes thisType = specialTypes.heal;
 
-    public float cost;
     //Stats related to the cards specialType
     public float healAmt;
 
@@ -24,6 +23,19 @@ public class SpecialCard : Card
 
     public void Heal()
     {
-
+        if (playerCard && turn.player_turn)
+        {
+            player.TakeDamage(-healAmt);
+            turn.player_turn = false;
+            player.hand.Remove(this);
+            Destroy(gameObject);
+        }
+        else if (!turn.player_turn)
+        {
+            enemy.TakeDamage(-healAmt);
+            turn.player_turn = true;
+            enemy.hand.Remove(this);
+            Destroy(gameObject);
+        }
     }
 }

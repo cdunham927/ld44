@@ -23,16 +23,21 @@ public class TurnController : MonoBehaviour
         gameOverCanvas.SetActive(true);
     }
 
-    public void Restart ()
+    public void Menu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Update ()
     {
         if (player_turn == false)
         {
-            enemy.Invoke("EnemyTurn", 0.5f);
+            enemy.Invoke("EnemyTurn", 1f);
         }
 
         if (player.hp <= 0)
