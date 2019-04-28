@@ -13,41 +13,37 @@ public class SpecialCard : Card
 
     public override void Activate()
     {
-        switch(thisType)
+        if (thisType == specialTypes.heal)
         {
-            case specialTypes.heal:
-                Heal();
-                break;
-        }
-    }
+            //Player heal
+            if (playerCard && turn.player_turn)
+            {
+                turn.battleLog.color = Color.white;
+                turn.UpdateLog("You heal " + healAmt.ToString() + " health!");
 
-    public void Heal()
-    {
-        if (playerCard && turn.player_turn)
-        {
-            turn.battleLog.color = Color.white;
-            turn.UpdateLog("You heal " + healAmt.ToString() + " health!");
+                player.TakeDamage(-healAmt);
+                turn.player_turn = false;
+                player.hand.Remove(this);
+                Destroy(gameObject);
 
-            player.TakeDamage(-healAmt);
-            turn.player_turn = false;
-            player.hand.Remove(this);
-            Destroy(gameObject);
+                player.attackIncrease--;
+                player.defenseIncrease--;
+            }
+            //Enemy heal
+            else if (!turn.player_turn && !playerCard)
+            {
+                turn.battleLog.color = Color.white;
+                turn.UpdateLog("The enemy heals " + healAmt.ToString() + " health!");
 
-            player.attackIncrease--;
-            player.defenseIncrease--;
-        }
-        else if (!turn.player_turn && !playerCard)
-        {
-            turn.battleLog.color = Color.white;
-            turn.UpdateLog("The enemy heals " + healAmt.ToString() + " health!");
+                enemy.TakeDamage(-healAmt);
+                turn.player_turn = true;
+                enemy.hand.Remove(this);
+                Destroy(gameObject);
 
-            enemy.TakeDamage(-healAmt);
-            turn.player_turn = true;
-            enemy.hand.Remove(this);
-            Destroy(gameObject);
-
-            enemy.attackIncrease--;
-            enemy.defenseIncrease--;
+                enemy.attackIncrease--;
+                enemy.defenseIncrease--;
+                enemy.hasStolen = false;
+            }
         }
     }
 }
