@@ -10,18 +10,11 @@ public class PlayerController : MonoBehaviour
     public TurnController turnController;
     public Image health_bar;
     public Text health;
-    
-    void GameOver()
-    {
 
-    }
     void Update ()
     {
         //Health
         health_bar.fillAmount = hp / maxHp;
         health.text = "Player HP: " + hp;
-    }
-        
-        
-        
+    }       
 }
