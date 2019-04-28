@@ -1,22 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PlayerHandPanelController : MonoBehaviour
+public class EnemyHandController : MonoBehaviour
 {
-    PlayerController player;
+    AIController enemy;
     RectTransform rect;
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerController>();
+        enemy = FindObjectOfType<AIController>();
         rect = GetComponent<RectTransform>();
     }
 
     private void Update()
     {
-        int numCards = player.hand.Count;
+        int numCards = enemy.hand.Count;
         if (numCards == 0) rect.sizeDelta = new Vector2(120, 150);
         else rect.sizeDelta = new Vector2(numCards * 110 + 10, 150);
     }

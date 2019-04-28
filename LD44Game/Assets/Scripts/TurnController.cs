@@ -7,14 +7,19 @@ public class TurnController : MonoBehaviour
 {
     public bool player_turn = true;
     public PlayerController player;
-    
-    
+    AIController enemy;
+
+    private void Awake()
+    {
+        enemy = FindObjectOfType<AIController>();
+    }
+
+
     void Update ()
     {
         if (player_turn == false)
         {
-            Debug.Log("Enemy Played A Card!");
-            player_turn = true;
+            enemy.EnemyTurn();
         }
     }
 }

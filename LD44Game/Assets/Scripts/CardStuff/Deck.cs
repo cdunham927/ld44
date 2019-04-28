@@ -6,18 +6,11 @@ public class Deck : MonoBehaviour
 {
     public List<Card> deck = new List<Card>();
 
-
-    private void Update()
+    public Card DrawCard(bool playerCard)
     {
-        if (Application.isEditor && Input.GetKeyDown(KeyCode.O))
-        {
-            Card c = DrawCard();
-            Debug.Log(c);
-        }
-    }
-
-    public Card DrawCard()
-    {
-        return deck[Random.Range(0, deck.Count)];
+        Card c = Instantiate(deck[Random.Range(0, deck.Count)], transform.position, Quaternion.identity);
+        c.playerCard = playerCard;
+        c.transform.SetParent(gameObject.transform);
+        return c;
     }
 }

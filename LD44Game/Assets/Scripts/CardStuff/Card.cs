@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public abstract class Card : MonoBehaviour
@@ -13,15 +12,26 @@ public abstract class Card : MonoBehaviour
     public string title;
     public string description;
     public Text text;
+    public bool playerCard;
+    public Image image;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
-        text = GetComponentInChildren<Text>();
     }
 
     private void Update()
     {
-        text.text = title + " \n\n" + description;
+        if (playerCard)
+        {
+            text.text = title + " \n\n" + description;
+            text.color = Color.black;
+            image.color = Color.white;
+        }
+        else
+        {
+            image.color = Color.gray;
+            text.text = "";
+        }
     }
 }
