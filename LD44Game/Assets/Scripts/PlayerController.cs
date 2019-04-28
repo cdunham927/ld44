@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,9 +10,11 @@ public class PlayerController : MonoBehaviour
     public TurnController turnController;
     public Image health_bar;
     public Text health;
+
     public List<Card> hand = new List<Card>();
     public Deck playerDeck;
     public int maxHand = 3;
+    public bool doubleDamage = false;
 
     private void Awake()
     {
@@ -25,12 +26,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Draw()
+    //Button On Clicks
+    public void Draw()
     {
         hand.Add(playerDeck.DrawCard(true));
         hp -= 5;
     }
 
+    public void Bigger ()
+    {
+        maxHand += 1
+        hp -= 15
+    }
+
+    public void PowerUp ()
+    {
+        doubleDamage = true;
+    }
+
+    public void Steal ()
+    {
+        //
+    }
+
+    public void SeeHand ()
+    {
+        //
+    }
+    
     public void TakeDamage(float amt)
     {
         hp -= amt;
@@ -40,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Application.isEditor && Input.GetKeyDown(KeyCode.O))
         {
-            if (hand.Count < maxHand) Draw();
+            if (hand.Count < maxHand) hand.Add(playerDeck.DrawCard(true));
         }
 
         //Health
