@@ -25,6 +25,7 @@ public class AIController : MonoBehaviour
     public bool getNum = true;
     public int attackIncrease = 0;
     public int defenseIncrease = 0;
+    public bool hasStolen;
     public bool startedTurn = false;
     //AI Difficulty
     public bool normal = true;
@@ -93,7 +94,7 @@ public class AIController : MonoBehaviour
         if (Application.isEditor && Input.GetKeyDown(KeyCode.P))
         {
             int x = Random.Range(0, hand.Count);
-            hand[x].show = true;
+            if (hand[x] != null) hand[x].show = true;
         }
     }
 
@@ -112,26 +113,27 @@ public class AIController : MonoBehaviour
 
     void DoubleDamage()
     {
-        Debug.Log("Double damg");
         doubleDamage = true;
+        val = 9000;
         hp -= 15;
         turn.UpdateLog("Enemy does double damage on their next attack!");
     }
 
     void Steal()
     {
-        if (canSteal)
+        if (canSteal && !hasStolen)
         {
-            Debug.Log("Stealing");
             int x = Random.Range(0, player.hand.Count);
             player.hand[x].gameObject.transform.SetParent(enemyDeck.transform);
             player.hand[x].playerCard = false;
             player.hand[x].show = false;
             hand.Add(player.hand[x]);
+            turn.UpdateLog("Enemy has stolen a " + player.hand[x].title + " card!");
             player.hand.Remove(player.hand[x]);
             hp -= 10;
+            hasStolen = true;
+            val = 9000;
             canSteal = false;
-            turn.UpdateLog("Enemy has stolen a " + player.hand[x].title + " card!");
         }
     }
 
@@ -171,7 +173,7 @@ public class AIController : MonoBehaviour
 
     public void EnemyEndTurn()
     {
-
+        //Need to fix this so they can draw cards when they want to
         if (hand.Count <= 0)
         {
             int t = Random.Range(0, 4);
@@ -182,6 +184,11 @@ public class AIController : MonoBehaviour
         }
 
         int x = Random.Range(0, hand.Count);
-        hand[x].Activate();
+        if (hand[x] == null)
+        {
+            Draw();
+            hand[0].Activate();
+        }
+        else hand[x].Activate();
     }
 }

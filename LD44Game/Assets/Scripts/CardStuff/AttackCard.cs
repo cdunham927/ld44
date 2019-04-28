@@ -24,7 +24,6 @@ public class AttackCard : Card
             }
             else enemy.TakeDamage(atk);
 
-
             turn.battleLog.color = Color.white;
             turn.UpdateLog("Enemy takes " + atk.ToString() + " damage!");
 
@@ -59,8 +58,7 @@ public class AttackCard : Card
 
             enemy.attackIncrease--;
             enemy.defenseIncrease--;
+            enemy.hasStolen = false;
         }
-
-        
     }
 }

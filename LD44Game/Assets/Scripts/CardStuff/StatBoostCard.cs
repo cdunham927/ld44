@@ -13,64 +13,60 @@ public class StatBoostCard : Card
     {
         if (defBoost)
         {
-            DefenseBoost();
+            //Player defense boost
+            if (playerCard && turn.player_turn)
+            {
+                player.defenseIncrease = effectDuration;
+
+                turn.battleLog.color = Color.white;
+                turn.UpdateLog("Your defense increases!");
+
+                turn.player_turn = false;
+                player.hand.Remove(this);
+                Destroy(gameObject);
+            }
+            //Enemy defense boost
+            else if (!turn.player_turn && !playerCard)
+            {
+                enemy.defenseIncrease = effectDuration;
+
+                turn.battleLog.color = Color.white;
+                turn.UpdateLog("The enemies defense increases!");
+
+                turn.player_turn = true;
+                enemy.hand.Remove(this);
+                Destroy(gameObject);
+                enemy.hasStolen = false;
+            }
         }
 
         if (atkBoost)
         {
-            AttackBoost();
-        }
-    }
+            //Player attack boost
+            if (playerCard && turn.player_turn)
+            {
+                player.attackIncrease = effectDuration;
 
-    public void DefenseBoost()
-    {
-        if (playerCard && turn.player_turn)
-        {
-            player.defenseIncrease = effectDuration;
+                turn.battleLog.color = Color.white;
+                turn.UpdateLog("Your attack increases!");
 
-            turn.battleLog.color = Color.white;
-            turn.UpdateLog("Your defense increases!");
+                turn.player_turn = false;
+                player.hand.Remove(this);
+                Destroy(gameObject);
+            }
+            //Enemy attack boost
+            else if (!turn.player_turn && !playerCard)
+            {
+                enemy.attackIncrease = effectDuration;
 
-            turn.player_turn = false;
-            player.hand.Remove(this);
-            Destroy(gameObject);
-        }
-        else if (!turn.player_turn && !playerCard)
-        {
-            enemy.defenseIncrease = effectDuration;
+                turn.battleLog.color = Color.white;
+                turn.UpdateLog("The enemies attack increases!");
 
-            turn.battleLog.color = Color.white;
-            turn.UpdateLog("The enemies defense increases!");
-
-            turn.player_turn = true;
-            enemy.hand.Remove(this);
-            Destroy(gameObject);
-        }
-    }
-
-    public void AttackBoost()
-    {
-        if (playerCard && turn.player_turn)
-        {
-            player.attackIncrease = effectDuration;
-
-            turn.battleLog.color = Color.white;
-            turn.UpdateLog("Your attack increases!");
-
-            turn.player_turn = false;
-            player.hand.Remove(this);
-            Destroy(gameObject);
-        }
-        else if (!turn.player_turn && !playerCard)
-        {
-            enemy.attackIncrease = effectDuration;
-
-            turn.battleLog.color = Color.white;
-            turn.UpdateLog("The enemies attack increases!");
-
-            turn.player_turn = true;
-            enemy.hand.Remove(this);
-            Destroy(gameObject);
+                turn.player_turn = true;
+                enemy.hand.Remove(this);
+                Destroy(gameObject);
+                enemy.hasStolen = false;
+            }
         }
     }
 }

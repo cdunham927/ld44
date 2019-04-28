@@ -39,6 +39,7 @@ public abstract class Card : MonoBehaviour
         else
         {
             image.color = Color.gray;
+            text.color = Color.black;
             if (!show) text.text = "";
             else text.text = title + " \n\n" + description;
         }
