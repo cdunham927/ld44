@@ -28,6 +28,12 @@ public abstract class Card : MonoBehaviour
         show = false;
     }
 
+    public void Remove(List<Card> hand)
+    {
+        hand.Remove(this);
+        Destroy(gameObject);
+    }
+
     private void Update()
     {
         if (playerCard)

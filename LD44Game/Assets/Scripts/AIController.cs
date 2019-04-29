@@ -28,7 +28,7 @@ public class AIController : MonoBehaviour
     public bool hasStolen;
     public bool startedTurn = false;
     //AI Difficulty
-    public bool normal = true;
+    public bool hard = true;
 
     private void Awake()
     {
@@ -107,6 +107,7 @@ public class AIController : MonoBehaviour
             hp -= 10;
             val = 9000;
             canIncreaseHand = false;
+            turn.battleLog.color = Color.white;
             turn.UpdateLog("Enemy increased their hand size!");
         }
     }
@@ -116,6 +117,7 @@ public class AIController : MonoBehaviour
         doubleDamage = true;
         val = 9000;
         hp -= 15;
+        turn.battleLog.color = Color.white;
         turn.UpdateLog("Enemy does double damage on their next attack!");
     }
 
@@ -128,6 +130,8 @@ public class AIController : MonoBehaviour
             player.hand[x].playerCard = false;
             player.hand[x].show = false;
             hand.Add(player.hand[x]);
+            player.hand[x].GetComponent<Button>().interactable = false;
+            turn.battleLog.color = Color.white;
             turn.UpdateLog("Enemy has stolen a " + player.hand[x].title + " card!");
             player.hand.Remove(player.hand[x]);
             hp -= 10;
@@ -145,27 +149,29 @@ public class AIController : MonoBehaviour
         //It cant be since I'm the one programming it
         //If you can't win against it then you just suck
         //Don't hate the player, hate the programmer
-
-        if (getNum && startedTurn)
-        {
-            val = Random.Range(0, 100);
-            //Double damage on next attack
-            if (val <= chanceToDoubleDamage && doubleDamage == false)
+        
+        if (hard) {
+            if (getNum && startedTurn)
             {
-                DoubleDamage();
+                val = Random.Range(0, 100);
+                //Double damage on next attack
+                if (val <= chanceToDoubleDamage && doubleDamage == false && hp > 35)
+                {
+                    DoubleDamage();
+                }
+                //Steal a card from the player
+                else if (hand.Count < maxHand && val <= chanceToSteal && player.hand.Count > 0 && hp > 15)
+                {
+                    Steal();
+                }
+                else if (maxHand < 7 && val <= chanceToIncreaseHand && hp > 15)
+                {
+                    IncreaseHandSize();
+                    canIncreaseHand = false;
+                }
+                getNum = false;
             }
-            //Steal a card from the player
-            else if (hand.Count < maxHand && val <= chanceToSteal && player.hand.Count > 0)
-            {
-                Steal();
-            }
-            else if (maxHand < 7 && val <= chanceToIncreaseHand)
-            {
-                IncreaseHandSize();
-                canIncreaseHand = false;
-            }
-            getNum = false;
-
+        
             startedTurn = false;
             Invoke("EnemyEndTurn", 1f);
         }
@@ -183,12 +189,15 @@ public class AIController : MonoBehaviour
             else if (t == 3 && hand.Count < 3 && hp > 25) DrawThree();
         }
 
-        int x = Random.Range(0, hand.Count);
-        if (hand[x] == null)
+        if (hand.Count > 0)
+        {
+            int x = Random.Range(0, hand.Count);
+            hand[x].Activate();
+        }
+        else
         {
             Draw();
             hand[0].Activate();
         }
-        else hand[x].Activate();
     }
 }

@@ -28,6 +28,7 @@ public class SpecialCard : Card
 
                 player.attackIncrease--;
                 player.defenseIncrease--;
+                player.canSpy = true;
             }
             //Enemy heal
             else if (!turn.player_turn && !playerCard)

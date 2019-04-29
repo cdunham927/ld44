@@ -24,6 +24,7 @@ public class StatBoostCard : Card
                 turn.player_turn = false;
                 player.hand.Remove(this);
                 Destroy(gameObject);
+                player.canSpy = true;
             }
             //Enemy defense boost
             else if (!turn.player_turn && !playerCard)
@@ -53,6 +54,7 @@ public class StatBoostCard : Card
                 turn.player_turn = false;
                 player.hand.Remove(this);
                 Destroy(gameObject);
+                player.canSpy = true;
             }
             //Enemy attack boost
             else if (!turn.player_turn && !playerCard)

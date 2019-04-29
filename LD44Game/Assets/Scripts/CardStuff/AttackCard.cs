@@ -33,6 +33,7 @@ public class AttackCard : Card
 
             player.attackIncrease--;
             player.defenseIncrease--;
+            player.canSpy = true;
         }
         //Enemy turn
         else if (!turn.player_turn && !playerCard)
