@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Menu.unity
+=======
+- path: Assets/Scenes/JesseScene.unity
+>>>>>>> 8dbff11570b78faedf2937653526f53f6436c423
   isLoaded: 1
   isActive: 1
