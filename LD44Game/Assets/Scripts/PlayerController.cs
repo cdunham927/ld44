@@ -149,10 +149,10 @@ public class PlayerController : MonoBehaviour
     {
         if (turn.player_turn)
         {
-            if (canSpy)
+            if (canSpy && enemy.hand.Count > 0)
             {
-                int x = Random.Range(0, hand.Count);
-                enemy.hand[x].show = true;
+                Card c = enemy.hand.Find(car => car.show == false);
+                c.show = true;
                 turn.battleLog.color = Color.white;
                 turn.UpdateLog("You spy on an enemies card!");
                 canSpy = false;

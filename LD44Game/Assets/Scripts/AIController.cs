@@ -32,6 +32,8 @@ public class AIController : MonoBehaviour
 
     private void Awake()
     {
+        hard = MusicController.music.enemyDifficulty;
+
         hp = maxHp;
         turn = FindObjectOfType<TurnController>();
         player = FindObjectOfType<PlayerController>();
@@ -150,7 +152,7 @@ public class AIController : MonoBehaviour
         //If you can't win against it then you just suck
         //Don't hate the player, hate the programmer
         
-        if (hard) {
+        if (!hard) {
             if (getNum && startedTurn)
             {
                 val = Random.Range(0, 100);
@@ -171,10 +173,9 @@ public class AIController : MonoBehaviour
                 }
                 getNum = false;
             }
-        
-            startedTurn = false;
-            Invoke("EnemyEndTurn", 1f);
         }
+        startedTurn = false;
+        Invoke("EnemyEndTurn", 1f);
     }
 
     public void EnemyEndTurn()

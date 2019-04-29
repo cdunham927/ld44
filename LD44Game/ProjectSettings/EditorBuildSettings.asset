@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 5ee092d59a7a46c4ea41103bc00723ca
+  - enabled: 1
+    path: Assets/Scenes/ColeScene.unity
+    guid: 7751e602b9930fe4bb5cfeea4264ea2d
   m_configObjects: {}

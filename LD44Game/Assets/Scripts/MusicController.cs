@@ -5,6 +5,7 @@ using UnityEngine;
 public class MusicController : MonoBehaviour
 {
     public static MusicController music;
+    public bool enemyDifficulty;
 
     private void Awake()
     {
@@ -14,5 +15,10 @@ public class MusicController : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
+    }
+
+    public void ChangeDifficulty()
+    {
+        enemyDifficulty = !enemyDifficulty;
     }
 }
